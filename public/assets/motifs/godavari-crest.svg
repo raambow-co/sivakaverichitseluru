@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40" width="300" height="40" fill="none">
+  <defs>
+    <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF57" stop-opacity="0" />
+      <stop offset="30%" stop-color="#D4AF57" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#F3EEDB" stop-opacity="1" />
+      <stop offset="70%" stop-color="#D4AF57" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#D4AF57" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <polygon points="150,8 158,20 150,32 142,20" fill="url(#crestGold)" />
+  <circle cx="150" cy="20" r="3" fill="#FCFAF6" />
+  <path d="M 138 20 C 120 10, 105 30, 85 20 C 65 10, 45 25, 0 20" stroke="url(#crestGold)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+  <circle cx="105" cy="20" r="2.5" fill="#D4AF57" />
+  <circle cx="65" cy="18" r="2" fill="#D4AF57" />
+  <path d="M 162 20 C 180 10, 195 30, 215 20 C 235 10, 255 25, 300 20" stroke="url(#crestGold)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+  <circle cx="195" cy="20" r="2.5" fill="#D4AF57" />
+  <circle cx="235" cy="18" r="2" fill="#D4AF57" />
+</svg>

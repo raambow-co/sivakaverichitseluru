@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-surface: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F8FAFC;
+    --bg-glass: rgba(255, 255, 255, 0.94);
+    --border-subtle: #E2E8F0;
+    --border-accent: #C59B27;
+    --text-primary: #071A36;
+    --text-secondary: #2C3E55;
+    --text-muted: #5B6F88;
+    --navy-primary: #071A36;
+    --navy-deep: #040E1E;
+    --gold-primary: #C59B27;
+    --gold-light: #E6C665;
+    --gold-dark: #9A7416;
+  }
+
+  [data-theme="dark-navy"] {
+    --bg-primary: #040E1E;
+    --bg-surface: #071A36;
+    --bg-card: #092042;
+    --bg-subtle: #051226;
+    --bg-glass: rgba(7, 26, 54, 0.96);
+    --border-subtle: rgba(197, 155, 39, 0.25);
+    --border-accent: #E6C665;
+    --text-primary: #FFFFFF;
+    --text-secondary: #E2E8F0;
+    --text-muted: #94A3B8;
+    --navy-primary: #071A36;
+    --navy-deep: #040E1E;
+    --gold-primary: #E6C665;
+    --gold-light: #F4E4BA;
+    --gold-dark: #C59B27;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+}
+
+/* 3D Perspective & Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Full Width Solid Navy Blue Rectangular Navbar (Rich Deep Dark Navy #071A36) */
+.rectangular-nav {
+  background-color: #071A36;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.35);
+  box-shadow: 0 4px 20px -4px rgba(4, 14, 30, 0.5);
+}
+
+[data-theme="dark-navy"] .rectangular-nav {
+  background-color: #040E1E;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.65);
+}
+
+/* 3D Metallic Gold Gradient Text */
+.metallic-gold-text {
+  background: linear-gradient(135deg, #A87D17 0%, #D4AF37 40%, #8A6409 80%, #C59B27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark-navy"] .metallic-gold-text {
+  background: linear-gradient(135deg, #FFF0BA 0%, #D4AF37 40%, #A87D17 75%, #F7DC6F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Primary Navy Button with Gold Accents - Rich Deep Navy #071A36 */
+.navy-primary-btn {
+  background-color: #071A36;
+  color: #FFFFFF;
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  box-shadow: 0 8px 20px -6px rgba(4, 14, 30, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navy-primary-btn:hover {
+  transform: translateY(-2px);
+  background-color: #0D254C;
+  box-shadow: 0 12px 25px -6px rgba(4, 14, 30, 0.55), 0 0 15px rgba(197, 155, 39, 0.3);
+  filter: brightness(1.08);
+}
+
+/* Metallic Gold Button */
+.metallic-gold-btn {
+  background: linear-gradient(135deg, #E6C665 0%, #C59B27 50%, #9A7416 100%);
+  color: #071A36;
+  box-shadow: 0 8px 20px -6px rgba(197, 155, 39, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metallic-gold-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px -6px rgba(197, 155, 39, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  filter: brightness(1.08);
+}
+
+/* Subtle Luminous Mesh Grid for Clean White Theme */
+.mesh-gradient-bg {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(7, 26, 54, 0.03) 0%, transparent 35%),
+    radial-gradient(circle at 85% 20%, rgba(7, 26, 54, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(7, 26, 54, 0.02) 0%, transparent 45%);
+}
+
+[data-theme="dark-navy"] .mesh-gradient-bg {
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(7, 26, 54, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(7, 26, 54, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(7, 26, 54, 0.2) 0%, transparent 55%);
+}
+
+/* 3D Coin Rotation & Floating Physics */
+.coin-3d-wrap {
+  transform-style: preserve-3d;
+  animation: coinSpin 12s infinite linear;
+}
+
+@keyframes coinSpin {
+  0% { transform: rotateY(0deg) rotateX(10deg); }
+  50% { transform: rotateY(180deg) rotateX(-10deg); }
+  100% { transform: rotateY(360deg) rotateX(10deg); }
+}
+
+/* 3D Floating Gold Coins System for Hero Screen */
+.hero-coin-container {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.coin-3d-cylinder {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@keyframes coinTumble1 {
+  0% { transform: rotateY(0deg) rotateX(16deg) rotateZ(6deg); }
+  50% { transform: rotateY(180deg) rotateX(-14deg) rotateZ(-6deg); }
+  100% { transform: rotateY(360deg) rotateX(16deg) rotateZ(6deg); }
+}
+
+@keyframes coinTumble2 {
+  0% { transform: rotateY(360deg) rotateX(-16deg) rotateZ(-10deg); }
+  50% { transform: rotateY(180deg) rotateX(14deg) rotateZ(8deg); }
+  100% { transform: rotateY(0deg) rotateX(-16deg) rotateZ(-10deg); }
+}
+
+@keyframes coinTumble3 {
+  0% { transform: rotateY(0deg) rotateX(20deg) rotateZ(12deg); }
+  50% { transform: rotateY(180deg) rotateX(-18deg) rotateZ(-10deg); }
+  100% { transform: rotateY(360deg) rotateX(20deg) rotateZ(12deg); }
+}
+
+@keyframes coinTumble4 {
+  0% { transform: rotateY(360deg) rotateX(12deg) rotateZ(-14deg); }
+  50% { transform: rotateY(180deg) rotateX(-12deg) rotateZ(10deg); }
+  100% { transform: rotateY(0deg) rotateX(12deg) rotateZ(-14deg); }
+}
+
+@keyframes coinTumble5 {
+  0% { transform: rotateY(0deg) rotateX(-18deg) rotateZ(8deg); }
+  50% { transform: rotateY(180deg) rotateX(16deg) rotateZ(-8deg); }
+  100% { transform: rotateY(360deg) rotateX(-18deg) rotateZ(8deg); }
+}
+
+@keyframes coinFloat1 {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-24px) translateX(10px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes coinFloat2 {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-30px) translateX(-12px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes coinFloat3 {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-20px) translateX(-14px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes coinFloat4 {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-26px) translateX(12px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes coinFloat5 {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-18px) translateX(-8px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes coinShadowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(0.72) translateY(10px); opacity: 0.18; }
+}
+
+@keyframes coinShimmerGlaze {
+  0% { transform: translateX(-150%) rotate(35deg); }
+  35%, 100% { transform: translateX(250%) rotate(35deg); }
+}
+
+.animate-coin-shimmer {
+  animation: coinShimmerGlaze 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Seamless 3D Floating Illustrations on Plain Screen */
+@keyframes floatPure3D {
+  0%, 100% {
+    transform: translateY(0px) rotateX(2deg) rotateY(-2deg);
+  }
+  50% {
+    transform: translateY(-18px) rotateX(-2deg) rotateY(2deg);
+  }
+}
+
+@keyframes shadowBreathe3D {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(0.78);
+    opacity: 0.16;
+  }
+}
+
+@keyframes floatingOrb {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-12px) translateX(6px);
+  }
+}
+
+.animate-float-3d {
+  animation: floatPure3D 5s ease-in-out infinite;
+}
+
+.animate-shadow-3d {
+  animation: shadowBreathe3D 5s ease-in-out infinite;
+}
+
+.animate-orb-slow {
+  animation: floatingOrb 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C59B27;
+  border-radius: 4px;
+}
