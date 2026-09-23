@@ -7,6 +7,8 @@ import SchemeVisual3D from '../3d/SchemeVisual3D';
 export default function ChitPlansSection({ lang, onSelectScheme }) {
   const [currentIndex, setCurrentIndex] = useState(1); // default ₹5L Small Business Growth Chit
   const [animating, setAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const scheme = CHIT_SCHEMES[currentIndex] || CHIT_SCHEMES[0];
 
@@ -24,6 +26,25 @@ export default function ChitPlansSection({ lang, onSelectScheme }) {
 
   const handleNext = () => {
     triggerSchemeChange((currentIndex + 1) % CHIT_SCHEMES.length);
+  };
+
+  // Touch swipe gesture handlers
+  const minSwipeDistance = 45;
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
   };
 
   return (
@@ -46,15 +67,15 @@ export default function ChitPlansSection({ lang, onSelectScheme }) {
           </h2>
         </div>
 
-        {/* Scheme Selector Tabs: All 5 Schemes in a Clean Single Line */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 mb-12">
+        {/* Scheme Selector Tabs: Placed side-by-side with horizontal touch scrolling on mobile */}
+        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-2.5 sm:gap-3 lg:grid lg:grid-cols-5 mb-8 sm:mb-12 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           {CHIT_SCHEMES.map((s, idx) => {
             const isSelected = currentIndex === idx;
             return (
               <button
                 key={s.id}
                 onClick={() => triggerSchemeChange(idx)}
-                className={`p-3 sm:p-3.5 rounded-2xl text-left transition-all duration-300 relative border flex flex-col justify-between ${
+                className={`snap-start shrink-0 w-[140px] sm:w-[165px] lg:w-auto p-3 sm:p-3.5 rounded-2xl text-left transition-all duration-300 relative border flex flex-col justify-between select-none ${
                   isSelected
                     ? 'bg-navy text-white border-navy dark:border-gold shadow-3d-navy-card ring-2 ring-gold/40 scale-[1.02]'
                     : 'bg-surface-subtle dark:bg-navy-dark text-navy dark:text-white border-surface-border dark:border-gold/20 hover:border-navy/40 dark:hover:border-gold/50 shadow-sm hover:scale-[1.01]'
@@ -99,8 +120,13 @@ export default function ChitPlansSection({ lang, onSelectScheme }) {
           })}
         </div>
 
-        {/* Side-by-Side Focused Scheme Showcase (Left: Data & Breakdown, Right: 3D Floating Visual) */}
-        <div className="max-w-7xl mx-auto relative">
+        {/* Side-by-Side Focused Scheme Showcase with touch swipe support */}
+        <div 
+          className="max-w-7xl mx-auto relative touch-pan-y"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             

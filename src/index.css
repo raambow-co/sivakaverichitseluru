@@ -292,3 +292,13 @@
   background: #C59B27;
   border-radius: 4px;
 }
+
+/* Hide scrollbar for clean mobile horizontal touch swiping */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

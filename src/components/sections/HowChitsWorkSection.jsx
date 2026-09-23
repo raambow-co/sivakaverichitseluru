@@ -5,6 +5,8 @@ import TiltCard from '../3d/TiltCard';
 
 export default function HowChitsWorkSection({ lang }) {
   const [activeStepIndex, setActiveStepIndex] = useState(2); // default on auction
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const iconMap = {
     UserCheck: UserCheck,
@@ -12,6 +14,33 @@ export default function HowChitsWorkSection({ lang }) {
     Gavel: Gavel,
     Banknote: Banknote,
     PieChart: PieChart,
+  };
+
+  const handlePrev = () => {
+    setActiveStepIndex((prev) => (prev > 0 ? prev - 1 : HOW_CHITS_WORK_STEPS.length - 1));
+  };
+
+  const handleNext = () => {
+    setActiveStepIndex((prev) => (prev < HOW_CHITS_WORK_STEPS.length - 1 ? prev + 1 : 0));
+  };
+
+  // Touch swipe gesture handlers
+  const minSwipeDistance = 45;
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
   };
 
   return (
@@ -34,8 +63,8 @@ export default function HowChitsWorkSection({ lang }) {
           </h2>
         </div>
 
-        {/* Steps Navigation Bar */}
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {/* Steps Navigation Bar: Placed side-by-side with horizontal touch scrolling on mobile */}
+        <div className="mt-8 sm:mt-12 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-2.5 sm:gap-3 lg:grid lg:grid-cols-5 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           {HOW_CHITS_WORK_STEPS.map((step, idx) => {
             const IconComponent = iconMap[step.icon] || Coins;
             const isActive = activeStepIndex === idx;
@@ -44,7 +73,7 @@ export default function HowChitsWorkSection({ lang }) {
               <button
                 key={step.step}
                 onClick={() => setActiveStepIndex(idx)}
-                className={`p-4 rounded-2xl text-left transition-all duration-300 relative border flex flex-col justify-between ${
+                className={`snap-start shrink-0 w-[140px] sm:w-[165px] lg:w-auto p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 relative border flex flex-col justify-between select-none ${
                   isActive
                     ? 'bg-navy text-white border-navy shadow-3d-navy-card scale-102 ring-2 ring-gold/40'
                     : 'bg-surface-subtle dark:bg-navy-dark text-navy dark:text-white/80 border-surface-border dark:border-gold/20 hover:border-navy/40'
@@ -60,7 +89,7 @@ export default function HowChitsWorkSection({ lang }) {
                 </div>
 
                 <div>
-                  <h4 className="font-display font-bold text-xs sm:text-sm leading-tight">
+                  <h4 className="font-display font-bold text-xs sm:text-sm leading-tight truncate">
                     {step.title}
                   </h4>
                   <p className={`text-[11px] mt-0.5 truncate font-mono ${isActive ? 'text-gold-champagne' : 'text-charcoal-muted dark:text-white/50'}`}>
@@ -72,13 +101,18 @@ export default function HowChitsWorkSection({ lang }) {
           })}
         </div>
 
-        {/* Active Stage 3D Spotlight Card in Clean White */}
+        {/* Active Stage 3D Spotlight Card with Touch Swipe Support */}
         {(() => {
           const current = HOW_CHITS_WORK_STEPS[activeStepIndex];
           const IconComponent = iconMap[current.icon] || Coins;
 
           return (
-            <div className="mt-8">
+            <div 
+              className="mt-8 touch-pan-y"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <TiltCard className="p-6 sm:p-10 rounded-3xl bg-white dark:bg-navy-dark border-2 border-surface-border dark:border-gold/40 shadow-3d-card relative overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                   

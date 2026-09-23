@@ -86,34 +86,34 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
             </div>
 
             {/* Clean & Minimalist Metric Pods */}
-            <div className="pt-6 border-t border-navy/10 dark:border-white/10 grid grid-cols-3 gap-3 sm:gap-4 text-left">
+            <div className="pt-6 border-t border-navy/10 dark:border-white/10 grid grid-cols-3 gap-2 sm:gap-4 text-left">
               
               {/* Metric 1: 26+ */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-2xl sm:text-3xl font-black font-mono text-navy dark:text-gold-light tracking-tight">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
+                <p className="text-xl sm:text-3xl font-black font-mono text-navy dark:text-gold-light tracking-tight">
                   26+
                 </p>
-                <p className="text-xs sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-1 leading-snug">
+                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
                   {lang === 'te' ? 'ఏళ్ల నమ్మకం' : 'Years of Trust'}
                 </p>
               </div>
 
               {/* Metric 2: 15K+ */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-2xl sm:text-3xl font-black font-mono text-navy dark:text-white tracking-tight">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
+                <p className="text-xl sm:text-3xl font-black font-mono text-navy dark:text-white tracking-tight">
                   15K+
                 </p>
-                <p className="text-xs sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-1 leading-snug">
+                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
                   {lang === 'te' ? 'సంతృప్త కుటుంబాలు' : 'Active Families'}
                 </p>
               </div>
 
               {/* Metric 3: 100% */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-2xl sm:text-3xl font-black font-mono text-emerald-600 dark:text-emerald-400 tracking-tight">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
+                <p className="text-xl sm:text-3xl font-black font-mono text-emerald-600 dark:text-emerald-400 tracking-tight">
                   100%
                 </p>
-                <p className="text-xs sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-1 leading-snug">
+                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
                   {lang === 'te' ? 'చట్టబద్ధ రక్షణ' : 'Act 1982 Compliant'}
                 </p>
               </div>

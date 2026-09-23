@@ -5,6 +5,8 @@ import { BRAND } from '../../constants/tokens';
 export default function TrustTransparencySection({ lang }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const securityPillars = [
     {
@@ -67,6 +69,27 @@ export default function TrustTransparencySection({ lang }) {
     setCurrentIndex((prev) => (prev + 1) % securityPillars.length);
   };
 
+  // Touch swipe gesture handlers
+  const minSwipeDistance = 40;
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsPaused(true);
+  };
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    setIsPaused(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
+  };
+
   return (
     <section id="trust" className="relative py-24 bg-surface-subtle dark:bg-navy-deep overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,12 +115,15 @@ export default function TrustTransparencySection({ lang }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* 3D INTERACTIVE CAROUSEL STAGE */}
+        {/* 3D INTERACTIVE CAROUSEL STAGE (with Mobile Touch Swiping) */}
         {/* ========================================================================= */}
         <div 
-          className="relative max-w-5xl mx-auto py-8 px-4"
+          className="relative max-w-5xl mx-auto py-8 px-2 sm:px-4 touch-pan-y"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           {/* 3D Carousel Container */}
           <div 

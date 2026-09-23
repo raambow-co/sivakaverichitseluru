@@ -38,6 +38,8 @@ export default function PeopleLocalPresenceSection({ lang }) {
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const SLIDE_DURATION = 6000; // 6 seconds
 
@@ -75,6 +77,27 @@ export default function PeopleLocalPresenceSection({ lang }) {
 
   const handleNext = () => {
     triggerSlideChange((currentIndex + 1) % TESTIMONIALS.length);
+  };
+
+  // Touch swipe gesture handlers
+  const minSwipeDistance = 45;
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsPaused(true);
+  };
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    setIsPaused(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
   };
 
   const review = TESTIMONIALS[currentIndex];
@@ -118,8 +141,13 @@ export default function PeopleLocalPresenceSection({ lang }) {
           </p>
         </div>
 
-        {/* Cinematic VIP Stage (Single Review Showcase) */}
-        <div className="relative rounded-3xl bg-navy text-white border-2 border-gold/40 shadow-3d-navy-card overflow-hidden">
+        {/* Cinematic VIP Stage (Single Review Showcase with Touch Swiping) */}
+        <div 
+          className="relative rounded-3xl bg-navy text-white border-2 border-gold/40 shadow-3d-navy-card overflow-hidden touch-pan-y"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           
           {/* Ambient Lighting Accents inside Stage */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none" />

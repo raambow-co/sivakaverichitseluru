@@ -51,17 +51,17 @@ export default function ChitCalculator({ lang, onSelectSchemeForEnquiry }) {
           {/* Left Controls in Clean White (7 cols) */}
           <div className="lg:col-span-7 space-y-6 bg-white dark:bg-navy-dark p-6 sm:p-8 rounded-3xl border border-surface-border dark:border-gold/30 shadow-3d-card">
             
-            {/* Step 1: Scheme Presets */}
+            {/* Step 1: Scheme Presets - Horizontal snap touch swipeable on mobile */}
             <div>
               <label className="block text-xs font-mono font-bold uppercase tracking-wider text-charcoal-muted dark:text-white/70 mb-3">
                 1. Select Chit Denomination:
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-2.5 sm:grid sm:grid-cols-3 pb-1.5 -mx-2 px-2 sm:mx-0 sm:px-0">
                 {CHIT_SCHEMES.map((scheme) => (
                   <button
                     key={scheme.id}
                     onClick={() => setSelectedSchemeId(scheme.id)}
-                    className={`p-3.5 rounded-2xl text-left border transition-all ${
+                    className={`snap-start shrink-0 w-[145px] sm:w-auto p-3.5 rounded-2xl text-left border transition-all select-none ${
                       selectedSchemeId === scheme.id
                         ? 'border-navy bg-navy/5 text-navy dark:border-gold dark:bg-gold/15 dark:text-white shadow-sm'
                         : 'border-surface-border bg-surface-subtle dark:bg-navy-deep text-charcoal dark:text-white/70 hover:border-navy/40'
@@ -86,7 +86,7 @@ export default function ChitCalculator({ lang, onSelectSchemeForEnquiry }) {
               <label className="block text-xs font-mono font-bold uppercase tracking-wider text-charcoal-muted dark:text-white/70 mb-3">
                 2. Your Financial Objective:
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                 <button
                   onClick={() => setMemberRole('saver')}
                   className={`p-3.5 rounded-2xl border flex items-center gap-3 transition-all ${
