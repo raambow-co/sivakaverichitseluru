@@ -255,7 +255,7 @@ export default function Hero3DGoldCoins() {
       size: 74,
       mobileSize: 42,
       thickness: 13,
-      positionClasses: '-bottom-2 right-3 sm:bottom-0 sm:right-8 lg:bottom-2 lg:right-14',
+      positionClasses: 'bottom-8 right-3 sm:bottom-12 sm:right-8 lg:bottom-16 lg:right-14',
       tumbleAnimation: 'coinTumble3 12s linear infinite',
       floatAnimation: 'coinFloat3 6.8s ease-in-out infinite alternate',
       parallaxFactor: 0.07,
@@ -283,7 +283,7 @@ export default function Hero3DGoldCoins() {
       size: 70,
       mobileSize: 40,
       thickness: 13,
-      positionClasses: '-bottom-3 left-2 sm:bottom-0 sm:left-6 lg:bottom-2 lg:left-10',
+      positionClasses: 'bottom-8 left-3 sm:bottom-12 sm:left-6 lg:bottom-16 lg:left-10',
       tumbleAnimation: 'coinTumble5 14s linear infinite',
       floatAnimation: 'coinFloat5 6.5s ease-in-out infinite alternate',
       parallaxFactor: 0.07,
@@ -297,7 +297,7 @@ export default function Hero3DGoldCoins() {
   return (
     <div
       ref={containerRef}
-      className="absolute top-20 sm:top-28 -bottom-16 left-0 right-0 overflow-visible pointer-events-none hero-coin-container z-20"
+      className="absolute top-20 sm:top-28 bottom-0 left-0 right-0 overflow-visible pointer-events-none hero-coin-container z-20"
       aria-hidden="true"
     >
       {coins.map((coin) => (
