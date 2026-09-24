@@ -16,11 +16,11 @@ export default function WhatsAppFloatingButton({
 
   return (
     <div 
-      className="fixed bottom-[88px] right-6 sm:bottom-[94px] sm:right-6 z-50 print:hidden select-none"
+      className="fixed bottom-[72px] right-4 sm:bottom-[88px] sm:right-6 z-50 print:hidden select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Floating Tooltip on hover */}
+      {/* Floating Tooltip on hover (Desktop only) */}
       <div 
         className={`absolute right-16 bottom-2.5 whitespace-nowrap px-3 py-1 rounded-full bg-white dark:bg-navy text-navy dark:text-white text-xs font-mono font-bold shadow-md border border-surface-border dark:border-white/10 transition-all duration-150 pointer-events-none hidden sm:block ${
           isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
@@ -37,11 +37,11 @@ export default function WhatsAppFloatingButton({
         type="button"
         onClick={handleClick}
         aria-label="Chat on WhatsApp"
-        className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] border-2 border-white hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] border-2 border-white hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none"
       >
         {/* Exact Official WhatsApp Vector Logo */}
         <svg
-          className="w-7 h-7 sm:w-8 sm:h-8 fill-white"
+          className="w-6 h-6 sm:w-7 sm:h-7 fill-white"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

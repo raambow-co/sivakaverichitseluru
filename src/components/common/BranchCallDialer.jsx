@@ -9,9 +9,8 @@ const BRANCH_OPTIONS = [
     phone: '08823-222229',
     tel: 'tel:08823222229',
     isHQ: false,
-    // Compact Arc Coordinates (Top to Left)
-    x: -5,
-    y: -168,
+    desktop: { x: -5, y: -168 },
+    mobile: { x: -5, y: -145 },
   },
   {
     id: 'eluru',
@@ -20,8 +19,8 @@ const BRANCH_OPTIONS = [
     phone: '08812-222229',
     tel: 'tel:08812222229',
     isHQ: true,
-    x: -72,
-    y: -120,
+    desktop: { x: -72, y: -120 },
+    mobile: { x: -55, y: -104 },
   },
   {
     id: 'sathupalli',
@@ -30,8 +29,8 @@ const BRANCH_OPTIONS = [
     phone: '9055595559',
     tel: 'tel:9055595559',
     isHQ: false,
-    x: -122,
-    y: -64,
+    desktop: { x: -122, y: -64 },
+    mobile: { x: -92, y: -56 },
   },
   {
     id: 'narayanapuram',
@@ -40,14 +39,24 @@ const BRANCH_OPTIONS = [
     phone: '9893123789',
     tel: 'tel:9893123789',
     isHQ: false,
-    x: -150,
-    y: 0,
+    desktop: { x: -150, y: 0 },
+    mobile: { x: -115, y: 0 },
   },
 ];
 
 export default function BranchCallDialer({ lang = 'en' }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dialerRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Close on outside click or Escape
   useEffect(() => {
@@ -77,25 +86,27 @@ export default function BranchCallDialer({ lang = 'en' }) {
   }, [isOpen]);
 
   return (
-    <div ref={dialerRef} className="fixed bottom-6 right-6 z-50 print:hidden select-none">
+    <div ref={dialerRef} className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 print:hidden select-none">
       
       {/* Subtle backdrop scrim when open */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/35 backdrop-blur-[1.5px] transition-opacity duration-200 z-30"
+          className="fixed inset-0 bg-black/40 backdrop-blur-[1.5px] transition-opacity duration-200 z-30"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      {/* Compact Radial Arc Branch Options */}
+      {/* Responsive Radial Arc Branch Options */}
       <div className="relative z-40">
         {BRANCH_OPTIONS.map((branch, index) => {
+          const coords = isMobile ? branch.mobile : branch.desktop;
+
           return (
             <div
               key={branch.id}
               style={{
                 transform: isOpen
-                  ? `translate(${branch.x}px, ${branch.y}px) scale(1)`
+                  ? `translate(${coords.x}px, ${coords.y}px) scale(1)`
                   : 'translate(0px, 0px) scale(0.4)',
                 opacity: isOpen ? 1 : 0,
                 pointerEvents: isOpen ? 'auto' : 'none',
@@ -107,17 +118,17 @@ export default function BranchCallDialer({ lang = 'en' }) {
               <a
                 href={branch.tel}
                 aria-label={`Call ${branch.name} branch at ${branch.phone}`}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white dark:bg-navy text-navy dark:text-white border border-surface-border dark:border-white/20 shadow-lg hover:border-[#0284C7] dark:hover:border-sky-400 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-150 whitespace-nowrap"
+                className="flex items-center gap-2 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-navy text-navy dark:text-white border border-surface-border dark:border-white/20 shadow-lg hover:border-[#0284C7] dark:hover:border-sky-400 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-150 whitespace-nowrap"
               >
-                {/* Compact Classic Blue Phone Circle */}
-                <div className="w-7 h-7 rounded-full bg-[#0284C7] text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <Phone className="w-3.5 h-3.5 fill-white text-white" />
+                {/* Classic Blue Phone Circle */}
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0284C7] text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-white text-white" />
                 </div>
 
                 {/* Branch Info */}
                 <div className="text-left pr-1 leading-tight">
                   <div className="flex items-center gap-1">
-                    <span className="text-[11px] font-display font-black text-navy dark:text-white">
+                    <span className="text-[10.5px] sm:text-[11px] font-display font-black text-navy dark:text-white">
                       {lang === 'te' ? branch.teluguName : branch.name}
                     </span>
                     {branch.isHQ && (
@@ -126,7 +137,7 @@ export default function BranchCallDialer({ lang = 'en' }) {
                       </span>
                     )}
                   </div>
-                  <p className="text-[10.5px] font-mono font-bold text-[#0284C7] dark:text-sky-300 mt-0.5">
+                  <p className="text-[10px] sm:text-[10.5px] font-mono font-bold text-[#0284C7] dark:text-sky-300 mt-0.5">
                     {branch.phone}
                   </p>
                 </div>
@@ -141,7 +152,7 @@ export default function BranchCallDialer({ lang = 'en' }) {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Close branch phone directory' : 'Open branch phone directory'}
-        className={`relative z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-200 ease-out focus:outline-none ${
+        className={`relative z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-200 ease-out focus:outline-none ${
           isOpen
             ? 'bg-navy text-white border-2 border-white/30 shadow-2xl scale-105'
             : 'bg-[#0284C7] hover:bg-[#0369A1] text-white border-2 border-white/90 shadow-[0_4px_20px_rgba(2,132,199,0.45)] hover:scale-105 active:scale-95'
@@ -156,7 +167,7 @@ export default function BranchCallDialer({ lang = 'en' }) {
         </div>
       </button>
 
-      {/* Compact Prompt Pill when closed */}
+      {/* Compact Prompt Pill when closed (Desktop Only) */}
       {!isOpen && (
         <div className="absolute right-16 bottom-2.5 pointer-events-none hidden sm:block">
           <div className="px-3 py-1 rounded-full bg-white dark:bg-navy text-navy dark:text-white text-[11px] font-mono font-bold shadow-md border border-surface-border dark:border-white/10 flex items-center gap-1.5 whitespace-nowrap">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Sparkles, Phone, TrendingUp, CheckCircle, ChevronDown, Coins, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles, Phone, TrendingUp, CheckCircle, ChevronDown, Coins, Zap, Instagram } from 'lucide-react';
 import { BRAND, CHIT_SCHEMES } from '../../constants/tokens';
 import TiltCard from '../3d/TiltCard';
 import GoldCoin3D from '../3d/GoldCoin3D';
@@ -23,7 +23,7 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
   }, []);
 
   return (
-    <section className="relative min-h-[92vh] pt-32 pb-16 flex items-center justify-center bg-white dark:bg-navy-deep overflow-x-clip">
+    <section className="relative min-h-[92vh] pt-44 pb-16 sm:pt-48 sm:pb-20 flex items-center justify-center bg-white dark:bg-navy-deep overflow-x-clip">
       
       {/* 3D Floating Gold Coins System (5 medium sized moving coins with physics) */}
       <Hero3DGoldCoins />
@@ -31,8 +31,8 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Hero Narrative (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          {/* Left Hero Narrative (7 cols on desktop, full width on mobile with balanced spacing) */}
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left max-w-2xl lg:max-w-none mx-auto lg:mx-0">
             
             {/* Trust Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-navy/20 dark:border-gold/40 bg-surface-subtle dark:bg-navy-dark shadow-sm">
@@ -43,14 +43,18 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
             </div>
 
             {/* Main Punchy Heading with 5-Second Auto Language Switcher */}
-            <div className="min-h-[140px] sm:min-h-[160px] flex items-center">
+            <div className="mt-5 sm:mt-7 min-h-[180px] sm:min-h-[160px] flex items-center">
               <h1 className={`font-display text-4xl sm:text-6xl lg:text-6xl font-black tracking-tight text-navy dark:text-white leading-[1.18] transition-all duration-300 ease-in-out ${
                 isFading ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
               }`}>
                 {autoLang === 'te' ? (
                   <span className="block font-sans font-black tracking-normal leading-[1.25]">
-                    సురక్షితమైన పొదుపు. <br />
-                    <span className="metallic-gold-text">తక్షణ ఆర్థిక భరోసా.</span>
+                    సురక్షితమైన <br />
+                    పొదుపు. <br />
+                    <span className="metallic-gold-text">
+                      తక్షణ ఆర్థిక <br />
+                      భరోసా.
+                    </span>
                   </span>
                 ) : (
                   <span className="block">
@@ -61,10 +65,8 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
               </h1>
             </div>
 
-
-
             {/* Action Buttons: Navy Primary + Gold Accents */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
                 href="#plans"
                 onClick={onExplorePlans}
@@ -119,10 +121,24 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
               </div>
             </div>
 
+            {/* Minimal Classic Instagram Button */}
+            <div className="pt-2 flex justify-center sm:justify-start">
+              <a
+                href="https://instagram.com/sivakaverichits"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-navy-dark text-navy dark:text-white font-mono text-xs font-bold border border-surface-border dark:border-white/20 shadow-sm hover:border-gold hover:text-gold-dark dark:hover:text-gold-light hover:shadow-md transition-all duration-200"
+              >
+                <Instagram className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                <span>{lang === 'te' ? 'ఇన్‌స్టాగ్రామ్‌లో ఫాలో అవ్వండి' : 'Follow Us on Instagram'}</span>
+                <ArrowRight className="w-3.5 h-3.5 opacity-60" />
+              </a>
+            </div>
+
           </div>
 
-          {/* Right: 3D Interactive Deep Navy Card (5 cols) */}
-          <div className="lg:col-span-5 relative flex justify-center">
+          {/* Right: 3D Interactive Deep Navy Card (Desktop Only - Kept clean on Mobile) */}
+          <div className="hidden lg:flex lg:col-span-5 relative justify-center">
             
             <TiltCard 
               maxTilt={12} 
