@@ -271,7 +271,7 @@ export default function TrustTransparencySection({ lang }) {
                 <span>OFFICIAL STATUTORY DISCLOSURE</span>
               </div>
               <h3 className="font-display font-black text-xl sm:text-2xl text-white">
-                Shiva Kaveri Chits Private Limited
+                Siva Kaveri Chits Private Limited
               </h3>
               <p className="text-xs font-mono text-gold-champagne font-bold">
                 Registration No: {BRAND.registrationNo} • CIN: {BRAND.cin}

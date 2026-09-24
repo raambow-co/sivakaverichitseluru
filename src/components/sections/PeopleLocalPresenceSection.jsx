@@ -23,14 +23,7 @@ const HIGHLIGHTS = [
     teluguCategory: "ఆక్వా కల్చర్ ప్రాజెక్ట్ ఫండింగ్",
     impact: "100% Bank Lien Security with Zero Risk",
     teluguImpact: "నేషనలైజ్డ్ బ్యాంక్ సెక్యూరిటీ డిపాజిట్ రక్షణ",
-  },
-  {
-    icon: "🏪",
-    category: "Retail Business Stability",
-    teluguCategory: "రిటైల్ వ్యాపార స్థిరత్వం",
-    impact: "Transparent Passbook & WhatsApp Receipts",
-    teluguImpact: "స్పష్టమైన పాస్‌బుక్ & వాట్సాప్ రసీదుల రక్షణ",
-  },
+  }
 ];
 
 export default function PeopleLocalPresenceSection({ lang }) {
@@ -125,14 +118,14 @@ export default function PeopleLocalPresenceSection({ lang }) {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-navy-dark border border-surface-border dark:border-gold/30 text-xs font-mono font-bold text-navy dark:text-gold-light uppercase tracking-wider shadow-sm">
             <Award className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
-            <span>Subscriber Experiences</span>
+            <span>{lang === 'te' ? 'సభ్యుల అనుభవాలు' : 'Subscriber Stories'}</span>
           </div>
 
           <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-navy dark:text-white leading-tight">
             {lang === 'te' ? (
-              <>గోదావరి ప్రజల విశ్వాసం… <span className="metallic-gold-text">ఖాతాదారుల అనుభవాలు</span></>
+              <span className="metallic-gold-text">ఖాతాదారుల అనుభవాలు</span>
             ) : (
-              <>Trusted by 15,000+ <span className="metallic-gold-text">Subscribers</span></>
+              <>Subscriber <span className="metallic-gold-text">Experiences</span></>
             )}
           </h2>
           
@@ -182,14 +175,14 @@ export default function PeopleLocalPresenceSection({ lang }) {
             {/* Left 4 Cols: VIP Subscriber Emblem Card */}
             <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:border-r lg:border-white/10 lg:pr-8">
               
-              {/* Circle-Shaped Customer Photo Holder */}
-              <div className="relative shrink-0">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-gold-dark via-gold to-gold-light shadow-xl">
+              {/* Circle-Shaped Customer Photo Holder (Enlarged) */}
+              <div className="relative shrink-0 my-1">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-full p-1.5 bg-gradient-to-tr from-gold-dark via-gold to-gold-light shadow-2xl">
                   <div className="w-full h-full rounded-full overflow-hidden bg-navy-dark border-2 border-navy">
                     <img
                       src={review.image}
                       alt={review.name}
-                      className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.parentElement.classList.add('flex', 'items-center', 'justify-center', 'font-display', 'font-black', 'text-2xl', 'text-gold');
@@ -198,8 +191,8 @@ export default function PeopleLocalPresenceSection({ lang }) {
                     />
                   </div>
                 </div>
-                <div className="absolute bottom-0 right-0 bg-emerald-500 text-white p-1.5 rounded-full shadow-lg border-2 border-navy" title="Verified Chit Member">
-                  <CheckCircle2 className="w-4 h-4" />
+                <div className="absolute bottom-1 right-1 bg-emerald-500 text-white p-2 rounded-full shadow-lg border-2 border-navy flex items-center justify-center" title="Verified Chit Member">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
               </div>
 

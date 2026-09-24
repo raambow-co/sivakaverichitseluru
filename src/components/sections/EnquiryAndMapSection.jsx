@@ -78,14 +78,14 @@ export default function EnquiryAndMapSection({ lang, selectedScheme }) {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-gold/30 text-xs font-mono font-bold text-navy dark:text-gold-light uppercase tracking-wider shadow-sm">
             <MessageSquare className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
-            <span>Direct Consultation</span>
+            <span>{lang === 'te' ? 'సంప్రదించండి' : 'Direct Enquiry'}</span>
           </div>
 
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-navy dark:text-white leading-tight">
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-tight">
             {lang === 'te' ? (
-              <>సంప్రదించండి • <span className="metallic-gold-text">Get In Touch</span></>
+              <><span className="metallic-gold-text">మాతో</span> <span className="text-navy dark:text-white">సంప్రదించండి</span></>
             ) : (
-              <>Direct Consultation • <span className="metallic-gold-text">Get In Touch</span></>
+              <><span className="metallic-gold-text">Get In</span> <span className="text-navy dark:text-white">Touch</span></>
             )}
           </h2>
         </div>

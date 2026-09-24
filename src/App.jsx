@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import MaximumBackground from './components/backgrounds/MaximumBackground';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
+import BranchCallDialer from './components/common/BranchCallDialer';
+import WhatsAppFloatingButton from './components/common/WhatsAppFloatingButton';
 import HeroSection from './components/sections/HeroSection';
 import BrandStory from './components/sections/BrandStory';
 import ChitPlansSection from './components/sections/ChitPlansSection';
@@ -125,6 +127,10 @@ export default function App() {
 
       {/* Statutory Legal Footer in Deep Navy */}
       <Footer lang={lang} />
+
+      {/* Floating Action Cluster */}
+      <WhatsAppFloatingButton lang={lang} />
+      <BranchCallDialer lang={lang} />
     </div>
   );
 }

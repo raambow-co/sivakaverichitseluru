@@ -134,7 +134,7 @@ export default function Footer({ lang }) {
             Statutory Legal Notice:
           </p>
           <p>
-            Shiva Kaveri Chits Private Limited is an incorporated company operating pursuant to the Chit Funds Act, 1982 (Central Act No. 40 of 1982) and Andhra Pradesh Chit Funds Rules, 2008. In accordance with Section 20, 100% of the aggregate chit value of every group is deposited in nationalized banks under the lien of the Government Registrar of Chit Funds prior to auction launch.
+            Siva Kaveri Chits Private Limited is an incorporated company operating pursuant to the Chit Funds Act, 1982 (Central Act No. 40 of 1982) and Andhra Pradesh Chit Funds Rules, 2008. In accordance with Section 20, 100% of the aggregate chit value of every group is deposited in nationalized banks under the lien of the Government Registrar of Chit Funds prior to auction launch.
           </p>
         </div>
 

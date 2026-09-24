@@ -1,6 +1,6 @@
 export const BRAND = {
   name: "Siva Kaveri Chits",
-  legalName: "Shiva Kaveri Chits Private Limited (శివ కావేరి చిట్స్)",
+  legalName: "Siva Kaveri Chits Private Limited (శివ కావేరి చిట్స్)",
   shortName: "SKC Chits",
   teluguName: "శివ కావేరి చిట్స్ RBT",
   tagline: "Telugu Cultural Heritage × Modern Institutional Trust",
@@ -292,7 +292,7 @@ export const TESTIMONIALS = [
     role: "Wholesale Paddy Trader",
     location: "Tadepalligudem, WG Dist",
     scheme: "₹5,00,000 Small Business Growth Chit",
-    image: "/assets/images/subscriber_1.jpg",
+    image: "/subscriber_2.jpg",
     rating: 5,
     yearJoined: "2012 (12 Years Member)",
     text: "During peak paddy harvesting season, bank loan approvals take weeks. Siva Kaveri Chits helped me lift auction funds within 48 hours to pay farmers on time. Their transparency in Eluru is unmatched.",
@@ -305,7 +305,7 @@ export const TESTIMONIALS = [
     role: "High School Teacher",
     location: "Narasimharao Pet, Eluru",
     scheme: "₹10,00,000 Higher Education & Career Chit",
-    image: "/assets/images/subscriber_2.jpg",
+    image: "/subscriber_1.jpg",
     rating: 5,
     yearJoined: "2018 (6 Years Member)",
     text: "I enrolled in the Higher Education scheme for my daughter's engineering admission. Every month the dividend reduced my actual payment. I received the full prize amount exactly when university fees were due.",
@@ -318,24 +318,11 @@ export const TESTIMONIALS = [
     role: "Aqua Culture Farmer & Contractor",
     location: "Bhimavaram",
     scheme: "₹50,00,000 Large Business Expansion Chit",
-    image: "/assets/images/subscriber_3.jpg",
+    image: "/subscriber_3.jpg",
     rating: 5,
     yearJoined: "2015 (9 Years Member)",
     text: "For large scale pond maintenance, feed purchases, and cold storage setup, the 50 Lakh Expansion Chit is a boon. Siva Kaveri is officially registered and deposits the foreman guarantee in nationalized banks, giving 100% peace of mind.",
     teluguText: "ఆక్వా చెరువుల విస్తరణ మరియు కోల్డ్ స్టోరేజ్ ఏర్పాటుకు ₹50 లక్షల బిజినెస్ ఎక్స్‌పాన్షన్ చిట్ చాలా ఉపయోగపడింది. ప్రభుత్వ నిబంధనల ప్రకారం నేషనలైజ్డ్ బ్యాంకుల్లో ఫోర్‌మన్ డిపాజిట్ చేయడం వల్ల 100% నమ్మకం."
-  },
-  {
-    id: 4,
-    name: "P. Subba Rao",
-    teluguName: "పి. సుబ్బారావు",
-    role: "Textile Store Proprietor",
-    location: "Jangareddygudem",
-    scheme: "₹20,00,000 Dream Car & Luxury Asset Chit",
-    image: "/assets/images/subscriber_4.jpg",
-    rating: 5,
-    yearJoined: "2020 (4 Years Member)",
-    text: "Instead of taking a 14% bank auto loan with endless paperwork, I funded my new family vehicle through Siva Kaveri Chits. Clear passbook records and zero hidden deductions make them West Godavari's finest.",
-    teluguText: "అధిక వడ్డీ బ్యాంక్ కార్ లోన్ బదులుగా శివ కావేరి చిట్స్ ద్వారా నా కొత్త కారును కొనుగోలు చేశాను. స్పష్టమైన పాస్‌బుక్, చెల్లించిన వెంటనే వాట్సాప్ రసీదులు వీరి ప్రత్యేకత."
   }
 ];
 

@@ -35,7 +35,7 @@ export default function BrandStory({ lang }) {
             >
               {/* Office Image */}
               <img
-                src="/office.png"
+                src="/siva_kaveri_sem_fin.png"
                 alt="Siva Kaveri Chits Eluru Headquarters"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
@@ -90,19 +90,19 @@ export default function BrandStory({ lang }) {
                 </div>
 
                 {/* MD Avatar & Identity Header */}
-                <div className="mt-6 flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+                <div className="mt-5 flex flex-col sm:flex-row items-center sm:items-center gap-6 text-center sm:text-left">
                   
-                  {/* Animated Circular Frame for MD Photo */}
+                  {/* Animated Circular Frame for MD Photo (Enlarged) */}
                   <div className="relative shrink-0 group/avatar">
                     
                     {/* Outer Rotating / Pulsing Gold Shimmer Ring */}
                     <div 
-                      className="absolute -inset-1 rounded-full bg-gradient-to-tr from-gold-dark via-gold-light to-amber-500 opacity-80 blur-[2px] animate-spin"
+                      className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-gold-dark via-gold-light to-amber-500 opacity-80 blur-[3px] animate-spin"
                       style={{ animationDuration: '10s' }}
                     />
 
-                    {/* Clean Circular Photo Container */}
-                    <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-surface-subtle dark:bg-navy-deep border-2 border-gold p-1 shadow-2xl flex items-center justify-center overflow-hidden">
+                    {/* Clean Circular Photo Container (Enlarged) */}
+                    <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full bg-surface-subtle dark:bg-navy-deep border-2 border-gold p-1 shadow-2xl flex items-center justify-center overflow-hidden">
                       <img
                         src="/md_narendra_varma.png"
                         alt="Narendra Varma - Managing Director"
@@ -112,28 +112,28 @@ export default function BrandStory({ lang }) {
                   </div>
 
                   {/* Name & Title */}
-                  <div className="space-y-1">
-                    <h3 className="font-display font-black text-2xl sm:text-3xl text-navy dark:text-white tracking-tight">
+                  <div className="space-y-1.5">
+                    <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-navy dark:text-white tracking-tight leading-snug">
                       Narendra Varma
                     </h3>
-                    <p className="font-mono text-sm font-black text-gold-dark dark:text-gold-light">
+                    <p className="font-mono text-sm sm:text-base font-black text-gold-dark dark:text-gold-light">
                       {lang === 'te' ? 'మేనేజింగ్ డైరెక్టర్' : 'Managing Director'}
                     </p>
-                    <p className="text-xs text-charcoal-muted dark:text-white/60 font-body">
-                      Shiva Kaveri Chits Private Limited
+                    <p className="text-xs sm:text-sm text-charcoal-muted dark:text-white/70 font-body">
+                      Siva Kaveri Chits Private Limited
                     </p>
                   </div>
 
                 </div>
 
                 {/* MD Message / Philosophy */}
-                <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-surface-subtle dark:bg-navy-deep border border-surface-border dark:border-gold/20 relative">
-                  <Quote className="w-5 h-5 text-gold-dark/40 dark:text-gold/40 mb-1" />
-                  <p className="text-xs sm:text-sm text-charcoal-light dark:text-white/85 leading-relaxed italic font-body">
+                <div className="mt-5 p-3.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-deep border border-surface-border dark:border-gold/20 relative">
+                  <Quote className="w-4 h-4 text-gold-dark/50 dark:text-gold/50 mb-1" />
+                  <p className="text-xs sm:text-sm text-charcoal-light dark:text-white/90 leading-relaxed italic font-body">
                     {lang === 'te' ? (
-                      '"గత 15 ఏళ్లుగా పశ్చిమ గోదావరి ప్రజల నమ్మకమే మాకు కొండంత బలం. ప్రతి చిట్ గ్రూప్‌కు 100% ప్రభుత్వ చట్టబద్ధ రక్షణ మరియు వేలం గెలిచిన వెంటనే నిబంధనల ప్రకారం వేగవంతమైన చెల్లింపులే మా ప్రధాన లక్ష్యం."'
+                      '"ప్రజల నమ్మకమే మా బలం — ప్రతి చిట్ సభ్యుడు కుటుంబంలాంటివారు, ప్రతి రూపాయికి 100% బ్యాంక్ డిపాజిట్ల చట్టబద్ధ రక్షణ మా బాధ్యత."'
                     ) : (
-                      '"For over 15 years, our guiding principle has been unwavering integrity and statutory discipline. Every subscriber is family, and every single rupee is protected by 100% bank deposits under government mandate."'
+                      '"Our guiding principle is unwavering integrity — every subscriber is family, and every single rupee is protected by 100% statutory bank guarantees."'
                     )}
                   </p>
                 </div>
@@ -141,14 +141,14 @@ export default function BrandStory({ lang }) {
               </div>
 
               {/* Bottom Trust Milestones Badges */}
-              <div className="mt-6 pt-4 border-t border-surface-border dark:border-gold/20 grid grid-cols-2 gap-3 text-xs">
+              <div className="mt-5 pt-3.5 border-t border-surface-border dark:border-gold/20 grid grid-cols-2 gap-3 text-xs">
                 <div className="flex items-center gap-2 text-navy dark:text-white font-bold">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span className="font-mono text-[11px]">{lang === 'te' ? '15+ ఏళ్ల అనుభవం' : '15+ Years Experience'}</span>
+                  <span className="font-mono text-[11px] sm:text-xs">{lang === 'te' ? '15+ ఏళ్ల అనుభవం' : '15+ Years Experience'}</span>
                 </div>
                 <div className="flex items-center gap-2 text-navy dark:text-white font-bold">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span className="font-mono text-[11px]">{lang === 'te' ? '15,000+ కుటుంబాలు' : '15,000+ Happy Families'}</span>
+                  <span className="font-mono text-[11px] sm:text-xs">{lang === 'te' ? '15,000+ కుటుంబాలు' : '15,000+ Happy Families'}</span>
                 </div>
               </div>
 
