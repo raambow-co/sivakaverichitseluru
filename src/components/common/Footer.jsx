@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { ShieldCheck, Phone, Mail, MapPin, Clock, Instagram } from 'lucide-react';
 import { BRAND, CHIT_SCHEMES } from '../../constants/tokens';
 
 export default function Footer({ lang }) {
@@ -117,6 +117,18 @@ export default function Footer({ lang }) {
               <Mail className="w-4 h-4 text-gold-light shrink-0" />
               <a href={`mailto:${BRAND.email}`} className="hover:text-gold-light">
                 {BRAND.email}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5 text-xs text-white/80 font-mono">
+              <Instagram className="w-4 h-4 text-pink-400 shrink-0" />
+              <a
+                href={BRAND.instagramUrl || "https://www.instagram.com/sivakaverichits/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gold-light"
+              >
+                {BRAND.instagramHandle || "@sivakaverichits"}
               </a>
             </div>
 

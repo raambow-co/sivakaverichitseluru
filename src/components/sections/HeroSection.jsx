@@ -124,7 +124,7 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
             {/* Minimal Classic Instagram Button */}
             <div className="pt-2 flex justify-center sm:justify-start">
               <a
-                href="https://instagram.com/sivakaverichits"
+                href={BRAND.instagramUrl || "https://www.instagram.com/sivakaverichits/"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-navy-dark text-navy dark:text-white font-mono text-xs font-bold border border-surface-border dark:border-white/20 shadow-sm hover:border-gold hover:text-gold-dark dark:hover:text-gold-light hover:shadow-md transition-all duration-200"

@@ -19,6 +19,8 @@ export const BRAND = {
   landline: "08812 - 222229",
   whatsappNumber: "919929922469",
   email: "contact@sivakaverichits.com",
+  instagramUrl: "https://www.instagram.com/sivakaverichits/",
+  instagramHandle: "@sivakaverichits",
   officeHours: "Monday to Saturday: 9:30 AM – 7:30 PM | Sunday: 10:00 AM – 1:30 PM (Auctions)",
   stats: [
     { label: "Years of Trust", teluguLabel: "విశ్వసనీయ ప్రస్థానం", value: "26+", suffix: "Years" },
