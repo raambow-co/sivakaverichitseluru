@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Moon, Sun, Menu, X, ChevronRight, Globe, MessageSquare } from 'lucide-react';
 import { BRAND } from '../../constants/tokens';
 
-export default function Header({ theme, toggleTheme, lang, toggleLang }) {
+export default function Header({ theme, toggleTheme, lang, toggleLang, onOpenLegal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -30,9 +30,11 @@ export default function Header({ theme, toggleTheme, lang, toggleLang }) {
         <a href="#" className="flex items-center gap-3 group shrink-0">
           <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full p-1 bg-white flex items-center justify-center shadow group-hover:scale-105 transition-transform overflow-hidden border border-white/20">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Siva Kaveri Chits Emblem"
               className="w-full h-full object-contain rounded-full"
+              width="48"
+              height="48"
             />
           </div>
 
@@ -62,6 +64,13 @@ export default function Header({ theme, toggleTheme, lang, toggleLang }) {
               {link.name}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => onOpenLegal && onOpenLegal('no-payment')}
+            className="px-3 py-1.5 rounded-xl text-[11px] font-mono font-bold text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 transition-all flex items-center gap-1.5 whitespace-nowrap ml-1"
+          >
+            <span>{lang === 'te' ? 'నో ఆన్‌లైన్ పేమెంట్స్' : 'No Web Payments'}</span>
+          </button>
         </nav>
 
         {/* Right Controls in Clean White & Solid Navy */}
@@ -125,6 +134,31 @@ export default function Header({ theme, toggleTheme, lang, toggleLang }) {
               {link.name}
             </a>
           ))}
+          
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenLegal && onOpenLegal('terms');
+            }}
+            className="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-gold-light hover:bg-white/10 flex items-center justify-between"
+          >
+            <span>{lang === 'te' ? 'చట్టబద్ధ నిబంధనలు & బైలాస్' : 'Statutory Terms & Bylaws'}</span>
+            <ChevronRight className="w-4 h-4 text-gold-light" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenLegal && onOpenLegal('no-payment');
+            }}
+            className="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-amber-300 hover:bg-white/10 flex items-center justify-between"
+          >
+            <span>{lang === 'te' ? 'నో ఆన్‌లైన్ పేమెంట్స్ నోటీస్' : 'No Web Payments Notice'}</span>
+            <ChevronRight className="w-4 h-4 text-amber-300" />
+          </button>
+
           <div className="pt-2 flex flex-col gap-2">
             <a
               href={`tel:${BRAND.phone}`}

@@ -4,6 +4,7 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import BranchCallDialer from './components/common/BranchCallDialer';
 import WhatsAppFloatingButton from './components/common/WhatsAppFloatingButton';
+import LegalComplianceModal from './components/common/LegalComplianceModal';
 import HeroSection from './components/sections/HeroSection';
 import BrandStory from './components/sections/BrandStory';
 import ChitPlansSection from './components/sections/ChitPlansSection';
@@ -29,12 +30,19 @@ export default function App() {
   // Selected Chit Scheme State
   const [selectedScheme, setSelectedScheme] = useState(CHIT_SCHEMES[1]); // ₹5L Small Business Growth Chit
 
+  // Legal & Compliance Modal State
+  const [legalModal, setLegalModal] = useState({
+    isOpen: false,
+    tab: 'terms', // 'terms' | 'privacy' | 'grievance' | 'no-payment'
+  });
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('skc_theme', theme);
   }, [theme]);
 
   useEffect(() => {
+    document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('skc_lang', lang);
   }, [lang]);
 
@@ -44,6 +52,14 @@ export default function App() {
 
   const toggleLang = () => {
     setLang((prev) => (prev === 'en' ? 'te' : 'en'));
+  };
+
+  const openLegalModal = (tab = 'terms') => {
+    setLegalModal({ isOpen: true, tab });
+  };
+
+  const closeLegalModal = () => {
+    setLegalModal((prev) => ({ ...prev, isOpen: false }));
   };
 
   const handleSelectScheme = (scheme) => {
@@ -79,6 +95,7 @@ export default function App() {
         toggleTheme={toggleTheme}
         lang={lang}
         toggleLang={toggleLang}
+        onOpenLegal={openLegalModal}
       />
 
       {/* Main Flow */}
@@ -107,7 +124,10 @@ export default function App() {
         <HowChitsWorkSection lang={lang} />
 
         {/* 05. Institutional Trust & Bank Lien Disclosures */}
-        <TrustTransparencySection lang={lang} />
+        <TrustTransparencySection 
+          lang={lang} 
+          onOpenLegal={openLegalModal}
+        />
 
         {/* 06. Institutional Brand Legacy & MD Profile */}
         <BrandStory lang={lang} />
@@ -122,15 +142,28 @@ export default function App() {
         <EnquiryAndMapSection
           lang={lang}
           selectedScheme={selectedScheme}
+          onOpenLegal={openLegalModal}
         />
       </main>
 
       {/* Statutory Legal Footer in Deep Navy */}
-      <Footer lang={lang} />
+      <Footer 
+        lang={lang} 
+        onOpenLegal={openLegalModal}
+      />
 
       {/* Floating Action Cluster */}
       <WhatsAppFloatingButton lang={lang} />
       <BranchCallDialer lang={lang} />
+
+      {/* Full Statutory & Legal Compliance Modal (Bilingual: English / Telugu) */}
+      <LegalComplianceModal
+        isOpen={legalModal.isOpen}
+        onClose={closeLegalModal}
+        initialTab={legalModal.tab}
+        lang={lang}
+      />
     </div>
   );
 }
+

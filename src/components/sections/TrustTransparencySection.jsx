@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ShieldCheck, Landmark, FileText, Lock, CheckCircle2, Award, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { BRAND } from '../../constants/tokens';
 
-export default function TrustTransparencySection({ lang }) {
+export default function TrustTransparencySection({ lang, onOpenLegal }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
@@ -281,14 +281,25 @@ export default function TrustTransparencySection({ lang }) {
               </p>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col items-center justify-center p-5 rounded-2xl bg-navy-dark/80 border border-gold/30 text-center shadow-inner">
-              <ShieldCheck className="w-10 h-10 text-gold-light mb-2" />
-              <p className="font-mono text-xs font-bold text-gold-light uppercase tracking-wider">
-                100% Legal & Regulated
-              </p>
-              <p className="text-[10px] text-white/60 mt-1 font-mono">
-                Zero Default Record (1998–Present)
-              </p>
+            <div className="lg:col-span-4 flex flex-col items-center justify-center p-5 rounded-2xl bg-navy-dark/80 border border-gold/30 text-center shadow-inner space-y-3">
+              <div>
+                <ShieldCheck className="w-10 h-10 text-gold-light mb-1 mx-auto" />
+                <p className="font-mono text-xs font-bold text-gold-light uppercase tracking-wider">
+                  100% Legal & Regulated
+                </p>
+                <p className="text-[10px] text-white/60 mt-0.5 font-mono">
+                  Zero Default Record (1998–Present)
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onOpenLegal && onOpenLegal('terms')}
+                className="w-full py-2.5 px-3 rounded-xl bg-gold/20 hover:bg-gold/30 text-gold-light border border-gold/40 text-xs font-mono font-bold transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>{lang === 'te' ? 'పూర్తి నిబంధనలు చదవండి' : 'View Full Byelaws & Policies'}</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
 
           </div>
@@ -298,3 +309,4 @@ export default function TrustTransparencySection({ lang }) {
     </section>
   );
 }
+

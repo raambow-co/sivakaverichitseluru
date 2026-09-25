@@ -18,9 +18,11 @@ export default function GoldCoin3D({ size = 80, className = "" }) {
           className="w-full h-full rounded-full border border-yellow-200/80 flex items-center justify-center overflow-hidden bg-amber-600 shadow-inner relative"
         >
           <img
-            src="/assets/coins/coin_rupee.jpg"
+            src="/assets/coins/coin_rupee.webp"
             alt="SKC Gold Medallion"
             className="w-full h-full object-cover rounded-full"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none rounded-full" />
         </div>

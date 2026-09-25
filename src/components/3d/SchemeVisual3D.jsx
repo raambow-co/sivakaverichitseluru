@@ -2,31 +2,31 @@ import React, { useState, useRef } from 'react';
 
 const SCHEME_VISUAL_MAP = {
   'skc-1l': {
-    image: '/assets/schemes/gold_pot_3d.png',
+    image: '/assets/schemes/gold_pot_3d.webp',
     alt: '3D Swarna Kalash Gold Pot Floating in Air',
     accentColor: '#D4AF37',
     glowColor: 'rgba(212, 175, 55, 0.35)',
   },
   'skc-5l': {
-    image: '/assets/schemes/business_store_3d.png',
+    image: '/assets/schemes/business_store_3d.webp',
     alt: '3D MSME Retail Boutique Floating in Air',
     accentColor: '#10B981',
     glowColor: 'rgba(16, 185, 129, 0.3)',
   },
   'skc-10l': {
-    image: '/assets/schemes/education_books_3d.png',
+    image: '/assets/schemes/education_books_3d.webp',
     alt: '3D Graduation Cap and Academic Library Floating in Air',
     accentColor: '#6366F1',
     glowColor: 'rgba(99, 102, 241, 0.35)',
   },
   'skc-20l': {
-    image: '/assets/schemes/luxury_car_3d.png',
+    image: '/assets/schemes/luxury_car_3d.webp',
     alt: '3D Luxury Sedan Car Floating in Air',
     accentColor: '#0EA5E9',
     glowColor: 'rgba(14, 165, 233, 0.35)',
   },
   'skc-50l': {
-    image: '/assets/schemes/large_business_3d.png',
+    image: '/assets/schemes/large_business_3d.webp',
     alt: '3D Corporate Towers and Golden Business Typography Floating in Air',
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.35)',

@@ -1,0 +1,5 @@
+# Robots.txt for Siva Kaveri Chits
+User-agent: *
+Allow: /
+
+Sitemap: https://sivakaverichits.com/sitemap.xml

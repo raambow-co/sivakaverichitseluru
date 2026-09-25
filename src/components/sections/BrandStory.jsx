@@ -35,9 +35,11 @@ export default function BrandStory({ lang }) {
             >
               {/* Office Image */}
               <img
-                src="/siva_kaveri_sem_fin.png"
+                src="/siva_kaveri_sem_fin.webp"
                 alt="Siva Kaveri Chits Eluru Headquarters"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+                decoding="async"
               />
 
               {/* Top Institutional Badge */}
@@ -104,9 +106,11 @@ export default function BrandStory({ lang }) {
                     {/* Clean Circular Photo Container (Enlarged) */}
                     <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full bg-surface-subtle dark:bg-navy-deep border-2 border-gold p-1 shadow-2xl flex items-center justify-center overflow-hidden">
                       <img
-                        src="/md_narendra_varma.png"
+                        src="/md_narendra_varma.webp"
                         alt="Narendra Varma - Managing Director"
                         className="w-full h-full rounded-full object-cover object-top transform group-hover/avatar:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>

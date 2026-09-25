@@ -43,23 +43,23 @@ export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSel
             </div>
 
             {/* Main Punchy Heading with 5-Second Auto Language Switcher */}
-            <div className="mt-5 sm:mt-7 min-h-[180px] sm:min-h-[160px] flex items-center">
-              <h1 className={`font-display text-4xl sm:text-6xl lg:text-6xl font-black tracking-tight text-navy dark:text-white leading-[1.18] transition-all duration-300 ease-in-out ${
+            <div className="mt-5 sm:mt-7 min-h-[170px] sm:min-h-[140px] lg:min-h-[150px] flex items-center">
+              <h1 className={`font-display text-4xl sm:text-5xl lg:text-5xl xl:text-[3.5rem] font-black tracking-tight text-navy dark:text-white leading-[1.18] transition-all duration-300 ease-in-out ${
                 isFading ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
               }`}>
                 {autoLang === 'te' ? (
                   <span className="block font-sans font-black tracking-normal leading-[1.25]">
-                    సురక్షితమైన <br />
-                    పొదుపు. <br />
+                    సురక్షితమైన <br className="sm:hidden" />
+                    పొదుపు. <br className="hidden sm:inline" />
                     <span className="metallic-gold-text">
-                      తక్షణ ఆర్థిక <br />
+                      తక్షణ ఆర్థిక <br className="sm:hidden" />
                       భరోసా.
                     </span>
                   </span>
                 ) : (
                   <span className="block">
                     Disciplined Wealth. <br />
-                    <span className="metallic-gold-text">Guaranteed Liquidity.</span>
+                    <span className="metallic-gold-text whitespace-nowrap">Guaranteed Liquidity.</span>
                   </span>
                 )}
               </h1>
