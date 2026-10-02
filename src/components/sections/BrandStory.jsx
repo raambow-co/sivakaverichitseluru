@@ -17,9 +17,9 @@ export default function BrandStory({ lang }) {
 
           <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-navy dark:text-white leading-tight">
             {lang === 'te' ? (
-              <>26 ఏళ్ల <span className="metallic-gold-text">విశ్వసనీయ ప్రస్థానం</span></>
+              <>15+ ఏళ్ల <span className="metallic-gold-text">విశ్వసనీయ ప్రస్థానం</span></>
             ) : (
-              <>Built on 26 Years of <span className="metallic-gold-text">Institutional Trust</span></>
+              <>Built on 15+ Years of <span className="metallic-gold-text">Institutional Trust</span></>
             )}
           </h2>
         </div>

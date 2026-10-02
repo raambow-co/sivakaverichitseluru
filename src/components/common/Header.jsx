@@ -15,10 +15,10 @@ export default function Header({ theme, toggleTheme, lang, toggleLang, onOpenLeg
   }, []);
 
   const navLinks = [
-    { name: lang === 'te' ? "చిట్ ప్లాన్లు" : "Chit Schemes", href: "#plans" },
-    { name: lang === 'te' ? "క్యాలిక్యులేటర్" : "Calculator", href: "#calculator" },
     { name: lang === 'te' ? "విధానం" : "How It Works", href: "#how-it-works" },
     { name: lang === 'te' ? "చట్టబద్ధత" : "Trust & Legal", href: "#trust" },
+    { name: lang === 'te' ? "చిట్ ప్లాన్లు" : "Chit Schemes", href: "#plans" },
+    { name: lang === 'te' ? "క్యాలిక్యులేటర్" : "Calculator", href: "#calculator" },
     { name: lang === 'te' ? "సందేహాలు" : "FAQs", href: "#faq" },
   ];
 

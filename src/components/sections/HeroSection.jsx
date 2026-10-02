@@ -1,218 +1,318 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Sparkles, Phone, TrendingUp, CheckCircle, ChevronDown, Coins, Zap, Instagram } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Play, 
+  Pause, 
+  Coins, 
+  ArrowRight, 
+  Phone, 
+  ShieldCheck, 
+  Sparkles, 
+  Instagram, 
+  CheckCircle2,
+  HeartHandshake,
+  Car,
+  Home as HomeIcon
+} from 'lucide-react';
 import { BRAND, CHIT_SCHEMES } from '../../constants/tokens';
-import TiltCard from '../3d/TiltCard';
-import GoldCoin3D from '../3d/GoldCoin3D';
-import Hero3DGoldCoins from '../3d/Hero3DGoldCoins';
 
-export default function HeroSection({ lang, onExplorePlans, onOpenEnquiry, onSelectScheme }) {
-  const [autoLang, setAutoLang] = useState(lang || 'en');
-  const [isFading, setIsFading] = useState(false);
+const SLIDES = [
+  {
+    id: 'marriage',
+    imageWebp: '/marriage_image.webp',
+    imagePng: '/marriage_image.png',
+    objectPosition: 'object-[center_top] sm:object-[center_12%]',
+    icon: HeartHandshake,
+    badgeEn: 'Marriage & Auspicious Milestones',
+    badgeTe: 'వివాహం & కుటుంబ శుభకార్యాలు',
+    titleEn: 'Auspicious Marriage Celebrations',
+    titleTe: 'సురక్షితమైన పొదుపుతో ఘనమైన వివాహ వేడుకలు',
+    subtitleEn: 'Plan your family’s proudest moments with complete peace of mind. Guaranteed liquidity & high dividend payouts.',
+    subtitleTe: 'అప్పుల భారం లేకుండా కుటుంబ నిశ్చింత వివాహ శుభకార్యాల కోసం నమ్మకమైన పొదుపు మార్గం.',
+    scheme: CHIT_SCHEMES[0] || null,
+  },
+  {
+    id: 'car',
+    imageWebp: '/car_image.webp',
+    imagePng: '/car_image.png',
+    objectPosition: 'object-center',
+    icon: Car,
+    badgeEn: 'Dream Vehicle Savings Plan',
+    badgeTe: 'వాహన కొనుగోలు పొదుపు ప్లాన్',
+    titleEn: 'Drive Your Dream Car with Disciplined Savings',
+    titleTe: 'మీ కలల వాహనాన్ని సొంతం చేసుకోండి',
+    subtitleEn: 'Avoid heavy bank interest rates. Use monthly chit auction dividends to purchase your dream vehicle with pride.',
+    subtitleTe: 'బ్యాంకు వడ్డీల భారం లేకుండా అత్యధిక డివిడెండ్లతో మీ కలల కారును సులభంగా సొంతం చేసుకోండి.',
+    scheme: CHIT_SCHEMES[1] || null,
+  },
+  {
+    id: 'house',
+    imageWebp: '/home_image.webp',
+    imagePng: '/home_image.png',
+    objectPosition: 'object-center',
+    icon: HomeIcon,
+    badgeEn: 'Home Construction & Land Assets',
+    badgeTe: 'గృహ నిర్మాణం & ఆస్తి పొదుపు',
+    titleEn: 'Own Your Dream House & Build Lasting Wealth',
+    titleTe: 'మీ సొంత ఇల్లు - కుటుంబానికి శాశ్వత భరోసా',
+    subtitleEn: 'Transform monthly contributions into permanent real estate assets. Fully protected under AP Chit Funds Act 1982.',
+    subtitleTe: 'నెలవారీ పొదుపుతో మీ సొంతింటి కలను నెరవేర్చుకుని భవిష్యత్తుకి బలమైన పునాది వేయండి.',
+    scheme: CHIT_SCHEMES[2] || null,
+  },
+];
 
-  // Auto-switch heading text between English and Telugu every 5 seconds
+export default function HeroSection({ lang = 'en', onExplorePlans, onOpenEnquiry, onSelectScheme }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const timerRef = useRef(null);
+
+  // 5-second slide auto-rotation logic
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFading(true);
-      setTimeout(() => {
-        setAutoLang((prev) => (prev === 'en' ? 'te' : 'en'));
-        setIsFading(false);
-      }, 300);
-    }, 5000);
+    if (isPlaying) {
+      timerRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
+      }, 5000);
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isPlaying, currentIndex]);
 
-    return () => clearInterval(interval);
-  }, []);
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) goToNext();
+    if (isRightSwipe) goToPrev();
+    setTouchStartX(0);
+    setTouchEndX(0);
+  };
+
+  const activeSlide = SLIDES[currentIndex];
 
   return (
-    <section className="relative min-h-[92vh] pt-44 pb-16 sm:pt-48 sm:pb-20 flex items-center justify-center bg-white dark:bg-navy-deep overflow-x-clip">
+    <section className="relative w-full pt-16 sm:pt-20 bg-navy-deep text-white overflow-hidden">
       
-      {/* 3D Floating Gold Coins System (5 medium sized moving coins with physics) */}
-      <Hero3DGoldCoins />
+      {/* Landscape Slideshow Canvas Container (Optimized height for all screen sizes) */}
+      <div 
+        className="relative w-full h-[60vh] min-h-[460px] max-h-[720px] sm:h-[70vh] lg:h-[76vh] xl:h-[80vh] overflow-hidden select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Background Landscape Images Array with Smooth Crossfade */}
+        {SLIDES.map((slide, index) => {
+          const isActive = index === currentIndex;
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-out ${
+                isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 pointer-events-none z-0'
+              }`}
+            >
+              {/* Picture Tag for Optimized WebP with PNG fallback */}
+              <picture className="w-full h-full block">
+                <source srcSet={slide.imageWebp} type="image/webp" />
+                <img
+                  src={slide.imagePng}
+                  alt={lang === 'te' ? slide.titleTe : slide.titleEn}
+                  className={`w-full h-full object-cover ${slide.objectPosition} filter brightness-[0.98] contrast-[1.02]`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </picture>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Hero Narrative (7 cols on desktop, full width on mobile with balanced spacing) */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+              {/* Rich Left Gradient Shade for Text Legibility */}
+              <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 lg:w-1/2 bg-gradient-to-r from-navy-deep/95 via-navy-deep/75 to-transparent" />
+              {/* Bottom Gradient Shade for Tab Indicators & Controls */}
+              <div className="absolute bottom-0 inset-x-0 h-32 sm:h-44 bg-gradient-to-t from-navy-deep/95 via-navy-deep/50 to-transparent" />
+            </div>
+          );
+        })}
+
+        {/* Play/Pause Rotation Control */}
+        <div className="absolute top-3.5 sm:top-5 left-4 sm:left-8 z-30">
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+            className="p-1.5 sm:p-2 rounded-full bg-navy-dark/90 border border-white/20 text-white/90 hover:text-white hover:border-gold backdrop-blur-md transition-all shadow"
+            title={isPlaying ? 'Pause Rotation' : 'Play Rotation'}
+          >
+            {isPlaying ? <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />}
+          </button>
+        </div>
+
+        {/* Main Content Hero Overlay (Classic presentation directly on the left shade) */}
+        <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-start">
+          <div className="max-w-lg lg:max-w-xl space-y-3 sm:space-y-4 text-left pl-1 sm:pl-3">
             
-            {/* Trust Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-navy/20 dark:border-gold/40 bg-surface-subtle dark:bg-navy-dark shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-navy dark:text-gold-light">
-                {autoLang === 'te' ? 'ఆంధ్రప్రదేశ్ ప్రభుత్వ గుర్తింపు పొందిన సంస్థ' : 'Govt. Registered Chit Fund Enterprise'}
+            {/* Govt Registered Chit Enterprise Trust Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-dark/90 border border-gold/40 shadow-lg backdrop-blur-md animate-fade-in">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-display font-extrabold text-gold-light uppercase tracking-wider">
+                {lang === 'te' ? 'ఆంధ్రప్రదేశ్ ప్రభుత్వ గుర్తింపు సంస్థ • ఏలూరు' : 'Govt. Registered Chit Enterprise • Eluru'}
               </span>
             </div>
 
-            {/* Main Punchy Heading with 5-Second Auto Language Switcher */}
-            <div className="mt-5 sm:mt-7 min-h-[170px] sm:min-h-[140px] lg:min-h-[150px] flex items-center">
-              <h1 className={`font-display text-4xl sm:text-5xl lg:text-5xl xl:text-[3.5rem] font-black tracking-tight text-navy dark:text-white leading-[1.18] transition-all duration-300 ease-in-out ${
-                isFading ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
-              }`}>
-                {autoLang === 'te' ? (
-                  <span className="block font-sans font-black tracking-normal leading-[1.25]">
-                    సురక్షితమైన <br className="sm:hidden" />
-                    పొదుపు. <br className="hidden sm:inline" />
-                    <span className="metallic-gold-text">
-                      తక్షణ ఆర్థిక <br className="sm:hidden" />
-                      భరోసా.
-                    </span>
-                  </span>
-                ) : (
-                  <span className="block">
-                    Disciplined Wealth. <br />
-                    <span className="metallic-gold-text whitespace-nowrap">Guaranteed Liquidity.</span>
-                  </span>
-                )}
-              </h1>
-            </div>
+            {/* Dynamic Animated Title (Classic Elegant Display Typography) */}
+            <h1 className="font-display text-xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-4.5xl font-black text-white leading-tight tracking-tight drop-shadow-xl">
+              {lang === 'te' ? (
+                <span className="block font-sans">{activeSlide.titleTe}</span>
+              ) : (
+                <span className="block">{activeSlide.titleEn}</span>
+              )}
+            </h1>
 
-            {/* Action Buttons: Navy Primary + Gold Accents */}
-            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <a
-                href="#plans"
-                onClick={onExplorePlans}
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl navy-primary-btn font-extrabold text-sm sm:text-base hover:scale-102 transition-transform"
-              >
-                <Coins className="w-5 h-5 text-gold-light" />
-                <span>{lang === 'te' ? 'చిట్ ప్లాన్లు చూడండి' : 'Explore 5 Chit Schemes'}</span>
-                <ArrowRight className="w-4 h-4 text-gold-light" />
-              </a>
+            {/* Hero Action Buttons (Classic Navy & Gold Buttons) */}
+            <div className="pt-1 sm:pt-2 flex flex-col items-start gap-2.5 sm:gap-3">
+              {/* Row 1: Main CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <a
+                  href="#plans"
+                  onClick={() => {
+                    if (activeSlide.scheme && onSelectScheme) {
+                      onSelectScheme(activeSlide.scheme);
+                    }
+                    if (onExplorePlans) onExplorePlans();
+                  }}
+                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl metallic-gold-btn font-extrabold text-xs sm:text-sm shadow-xl hover:scale-105 transition-transform"
+                >
+                  <Coins className="w-4 h-4 text-navy" />
+                  <span>{lang === 'te' ? 'చిట్ ప్లాన్లు చూడండి' : 'Explore Chit Schemes'}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-navy" />
+                </a>
 
-              <a
-                href="#enquiry"
-                onClick={onOpenEnquiry}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white dark:bg-navy-dark text-navy dark:text-white font-bold text-sm sm:text-base border-2 border-navy/20 dark:border-gold/40 hover:border-gold shadow hover:scale-102 transition-all"
-              >
-                <Phone className="w-4 h-4 text-gold-dark dark:text-gold-light" />
-                <span>{lang === 'te' ? 'ఉచిత సంప్రదింపు' : 'Free Consultation'}</span>
-              </a>
-            </div>
-
-            {/* Clean & Minimalist Metric Pods */}
-            <div className="pt-6 border-t border-navy/10 dark:border-white/10 grid grid-cols-3 gap-2 sm:gap-4 text-left">
-              
-              {/* Metric 1: 26+ */}
-              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-xl sm:text-3xl font-black font-mono text-navy dark:text-gold-light tracking-tight">
-                  26+
-                </p>
-                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
-                  {lang === 'te' ? 'ఏళ్ల నమ్మకం' : 'Years of Trust'}
-                </p>
+                <a
+                  href="#enquiry"
+                  onClick={onOpenEnquiry}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-navy-dark/90 hover:bg-navy text-white font-bold text-xs sm:text-sm border border-white/30 hover:border-gold backdrop-blur-md shadow-lg hover:scale-105 transition-all"
+                >
+                  <Phone className="w-3.5 h-3.5 text-gold-light" />
+                  <span>{lang === 'te' ? 'ఉచిత సంప్రదింపు' : 'Free Consultation'}</span>
+                </a>
               </div>
 
-              {/* Metric 2: 15K+ */}
-              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-xl sm:text-3xl font-black font-mono text-navy dark:text-white tracking-tight">
-                  15K+
-                </p>
-                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
-                  {lang === 'te' ? 'సంతృప్త కుటుంబాలు' : 'Active Families'}
-                </p>
-              </div>
-
-              {/* Metric 3: 100% */}
-              <div className="p-2.5 sm:p-4 rounded-2xl bg-surface-subtle dark:bg-navy-dark border border-surface-border dark:border-white/10 shadow-sm">
-                <p className="text-xl sm:text-3xl font-black font-mono text-emerald-600 dark:text-emerald-400 tracking-tight">
-                  100%
-                </p>
-                <p className="text-[10px] sm:text-sm font-bold text-charcoal-muted dark:text-white/80 font-display mt-0.5 sm:mt-1 leading-tight">
-                  {lang === 'te' ? 'చట్టబద్ధ రక్షణ' : 'Act 1982 Compliant'}
-                </p>
-              </div>
-            </div>
-
-            {/* Minimal Classic Instagram Button */}
-            <div className="pt-2 flex justify-center sm:justify-start">
+              {/* Row 2: Instagram Button placed below the two buttons */}
               <a
                 href={BRAND.instagramUrl || "https://www.instagram.com/sivakaverichits/"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-navy-dark text-navy dark:text-white font-mono text-xs font-bold border border-surface-border dark:border-white/20 shadow-sm hover:border-gold hover:text-gold-dark dark:hover:text-gold-light hover:shadow-md transition-all duration-200"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-bold border border-white/20 backdrop-blur-md transition-all shadow-md hover:scale-105"
               >
-                <Instagram className="w-4 h-4 text-pink-600 dark:text-pink-400" />
-                <span>{lang === 'te' ? 'ఇన్‌స్టాగ్రామ్‌లో ఫాలో అవ్వండి' : 'Follow Us on Instagram'}</span>
-                <ArrowRight className="w-3.5 h-3.5 opacity-60" />
+                <Instagram className="w-4 h-4 text-pink-400" />
+                <span>Instagram</span>
               </a>
             </div>
 
+            {/* Quick Trust Badges Strip (Classic Institutional Trust Strip) */}
+            <div className="pt-2 flex items-center gap-4 text-[11px] sm:text-xs font-sans font-semibold text-slate-200">
+              <div className="flex items-center gap-1.5 drop-shadow">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold-light" />
+                <span>Chit Act 1982 Compliant</span>
+              </div>
+              <div className="hidden sm:flex items-center gap-1.5 drop-shadow">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{lang === 'te' ? '15+ ఏళ్ల విశ్వాసం' : '15+ Years Legacy'}</span>
+              </div>
+              <div className="flex items-center gap-1.5 drop-shadow">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>15,000+ Happy Families</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Navigation Arrows (Classic Widescreen Buttons) */}
+        <button
+          onClick={goToPrev}
+          aria-label="Previous Slide"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-xl bg-navy-dark/80 hover:bg-navy border border-white/20 hover:border-gold text-white backdrop-blur-md shadow-xl transition-all hover:scale-110"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        <button
+          onClick={goToNext}
+          aria-label="Next Slide"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 rounded-xl bg-navy-dark/80 hover:bg-navy border border-white/20 hover:border-gold text-white backdrop-blur-md shadow-xl transition-all hover:scale-110"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        {/* Bottom Slide Indicators Bar with Live 5-Second Timer Bar */}
+        <div className="absolute bottom-3 sm:bottom-4 inset-x-0 z-30 flex flex-col items-center gap-2 px-4">
+          
+          {/* Slide Tab Buttons (On mobile: Icon ONLY. On desktop: Icon + Text) */}
+          <div className="flex items-center justify-center gap-2 sm:gap-3 p-1.5 rounded-xl bg-navy-dark/90 border border-white/20 backdrop-blur-xl shadow-xl max-w-full overflow-x-auto no-scrollbar">
+            {SLIDES.map((slide, idx) => {
+              const SlideIcon = slide.icon;
+              const isActive = idx === currentIndex;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-sans font-bold transition-all whitespace-nowrap ${
+                    isActive
+                      ? 'bg-gold text-navy shadow font-black scale-105'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                  }`}
+                  title={lang === 'te' ? slide.badgeTe : slide.badgeEn}
+                >
+                  <SlideIcon className={`w-4 h-4 sm:w-3.5 sm:h-3.5 ${isActive ? 'text-navy' : 'text-gold-light'}`} />
+                  <span className="hidden sm:inline">{lang === 'te' ? slide.badgeTe : slide.badgeEn}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Right: 3D Interactive Deep Navy Card (Desktop Only - Kept clean on Mobile) */}
-          <div className="hidden lg:flex lg:col-span-5 relative justify-center">
-            
-            <TiltCard 
-              maxTilt={12} 
-              scale={1.02}
-              className="w-full max-w-md rounded-3xl bg-navy text-white p-7 border-2 border-gold/40 shadow-3d-navy-card relative overflow-hidden"
-            >
-              {/* Header inside 3D Card */}
-              <div className="flex items-center justify-between border-b border-white/15 pb-4">
-                <div className="flex items-center gap-3">
-                  <GoldCoin3D size={44} />
-                  <div>
-                    <h3 className="font-display font-black text-base text-white">
-                      Small Business Growth Chit
-                    </h3>
-                    <span className="text-[11px] font-mono text-gold-champagne font-bold">
-                      MSME ₹5,00,000 Scheme
-                    </span>
-                  </div>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-gold/20 text-gold-light text-[10px] font-mono font-bold uppercase">
-                  Popular
-                </span>
-              </div>
-
-              {/* 3D Tier Metrics */}
-              <div className="my-6 space-y-3">
-                <div className="p-4 rounded-2xl bg-navy-dark/80 border border-gold/30 flex items-baseline justify-between shadow-inner">
-                  <div>
-                    <p className="text-[10px] font-mono uppercase text-white/60">Total Chit Pool</p>
-                    <p className="text-2xl font-black font-mono text-white">₹5,00,000</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] font-mono uppercase text-gold-champagne font-bold">Avg Net Monthly</p>
-                    <p className="text-lg font-bold font-mono text-gold-light">~₹10,300/mo</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded-xl bg-navy-dark/80 border border-white/15 shadow-inner">
-                    <p className="text-white/60 text-[10px] uppercase font-mono">Tenure</p>
-                    <p className="font-bold text-white mt-0.5">40 Months</p>
-                  </div>
-                  <div className="p-3 rounded-xl bg-navy-dark/80 border border-white/15 shadow-inner">
-                    <p className="text-white/60 text-[10px] uppercase font-mono">Dividend Yield</p>
-                    <p className="font-bold text-emerald-400 mt-0.5">Up to 12% p.a.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card Action Button */}
-              <button
-                onClick={() => onSelectScheme && onSelectScheme(CHIT_SCHEMES[1])}
-                className="w-full py-3.5 px-4 rounded-xl metallic-gold-btn text-navy font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow"
-              >
-                <span>Instant Enrollment Pre-Fill</span>
-                <ArrowRight className="w-4 h-4 text-navy" />
-              </button>
-
-              <div className="mt-4 flex items-center justify-center gap-2 text-[11px] text-white/60 font-mono">
-                <ShieldCheck className="w-3.5 h-3.5 text-gold-light" />
-                <span>Section 20 Bank Lien Protected</span>
-              </div>
-
-            </TiltCard>
-
+          {/* 5-Second Animated Progress Bar */}
+          <div className="w-40 sm:w-56 h-1 rounded-full bg-white/20 overflow-hidden relative">
+            {isPlaying && (
+              <div
+                key={currentIndex}
+                className="h-full bg-gradient-to-r from-gold-light to-gold rounded-full"
+                style={{
+                  animation: 'heroSlideProgress 5000ms linear forwards'
+                }}
+              />
+            )}
           </div>
 
         </div>
+
       </div>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-navy/40 dark:text-gold-light opacity-60 animate-bounce pointer-events-none">
-        <ChevronDown className="w-5 h-5" />
-      </div>
+      {/* Progress Bar Keyframe Inline Styling */}
+      <style>{`
+        @keyframes heroSlideProgress {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+      `}</style>
 
     </section>
   );
 }
+
+
+

@@ -23,6 +23,55 @@ const HIGHLIGHTS = [
     teluguCategory: "ఆక్వా కల్చర్ ప్రాజెక్ట్ ఫండింగ్",
     impact: "100% Bank Lien Security with Zero Risk",
     teluguImpact: "నేషనలైజ్డ్ బ్యాంక్ సెక్యూరిటీ డిపాజిట్ రక్షణ",
+  },
+  {
+    icon: "🪙",
+    category: "Gold Accumulation & Savings",
+    teluguCategory: "స్వర్ణ ఆభరణాల పొదుపు",
+    impact: "Festival Gold Savings with Dividend Support",
+    teluguImpact: "డివిడెండ్ లాభాలతో పండుగ ఆభరణాల కొనుగోలు",
+  },
+  {
+    icon: "🏬",
+    category: "Retail Working Capital",
+    teluguCategory: "చిరు వ్యాపార వర్కింగ్ క్యాపిటల్",
+    impact: "Seasonal Hardware Inventory Stocking",
+    teluguImpact: "తనఖా లేని సీజనల్ ఇన్వెంటరీ నిధులు",
+  },
+  {
+    icon: "🏛️",
+    category: "Financial Sector Verification",
+    teluguCategory: "బ్యాంకింగ్ రంగ నిపుణుల విశ్వాసం",
+    impact: "100% Statutory Chit Funds Act 1982 Compliant",
+    teluguImpact: "1982 చట్టబద్ధ 100% బ్యాంక్ గ్యారెంటీ రక్షణ",
+  },
+  {
+    icon: "🏗️",
+    category: "Infrastructure & Real Estate",
+    teluguCategory: "రియల్ ఎస్టేట్ & ప్రాజెక్ట్ ఫండింగ్",
+    impact: "Predictable Capital Disbursal for Deadlines",
+    teluguImpact: "నిర్ణీత గడువులోగా ప్రాజెక్ట్ నిధుల విడుదల",
+  },
+  {
+    icon: "✈️",
+    category: "Higher Education & Global Scholars",
+    teluguCategory: "ఉన్నత విద్య & విదేశీ చదువులు",
+    impact: "Zero Student Loan Compound Interest Debt",
+    teluguImpact: "ఎడ్యుకేషన్ లోన్ వడ్డీల భారం లేని చదువు",
+  },
+  {
+    icon: "🏫",
+    category: "Disciplined Household Savings",
+    teluguCategory: "గృహ పొదుపు & ఆర్థిక క్రమశిక్షణ",
+    impact: "Transparent Branch Service & Monthly Dividends",
+    teluguImpact: "పారదర్శక సేవా విధానం & నెలవారీ డివిడెండ్లు",
+  },
+  {
+    icon: "🚗",
+    category: "Zero-Interest Luxury Assets",
+    teluguCategory: "వాహన కొనుగోలు పొదుపు",
+    impact: "Clean 100% RC Ownership without Bank Liens",
+    teluguImpact: "బ్యాంక్ తనఖా లేని పూర్తి వాహన యజమాని హక్కు",
   }
 ];
 

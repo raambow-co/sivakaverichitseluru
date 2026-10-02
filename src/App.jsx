@@ -100,7 +100,7 @@ export default function App() {
 
       {/* Main Flow */}
       <main className="flex-grow z-10">
-        {/* 01. 3D Hero Section in Luminous White */}
+        {/* 01. 3D Landscape Slideshow Hero Section */}
         <HeroSection
           lang={lang}
           onExplorePlans={handleScrollToPlans}
@@ -108,25 +108,25 @@ export default function App() {
           onSelectScheme={handleSelectScheme}
         />
 
-        {/* 02. 3D Tilt Chit Schemes Portfolio */}
+        {/* 02. How Chits Work Section (5-Stage Chit Lifecycle Timeline) */}
+        <HowChitsWorkSection lang={lang} />
+
+        {/* 03. Institutional Trust & Bank Lien Legal Transparency */}
+        <TrustTransparencySection 
+          lang={lang} 
+          onOpenLegal={openLegalModal}
+        />
+
+        {/* 04. 3D Tilt Chit Schemes Portfolio */}
         <ChitPlansSection
           lang={lang}
           onSelectScheme={handleSelectScheme}
         />
 
-        {/* 03. Interactive 3D Modeler & Dividend Simulator */}
+        {/* 05. Interactive 3D Modeler & Dividend Simulator */}
         <ChitCalculator
           lang={lang}
           onSelectSchemeForEnquiry={handleSelectScheme}
-        />
-
-        {/* 04. 5-Stage Chit Lifecycle Timeline */}
-        <HowChitsWorkSection lang={lang} />
-
-        {/* 05. Institutional Trust & Bank Lien Disclosures */}
-        <TrustTransparencySection 
-          lang={lang} 
-          onOpenLegal={openLegalModal}
         />
 
         {/* 06. Institutional Brand Legacy & MD Profile */}

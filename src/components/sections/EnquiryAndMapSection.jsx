@@ -279,12 +279,13 @@ export default function EnquiryAndMapSection({ lang, selectedScheme, onOpenLegal
           </p>
         </div>
 
-        {/* 50/50 Split Grid in Clean White */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* 50/50 Split Grid with Perfect Baseline Alignment */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
           {/* Left: Lead Capture Form (6 cols) */}
-          <div className="lg:col-span-6">
-            <TiltCard maxTilt={6} className="bg-white dark:bg-navy-dark p-6 sm:p-8 rounded-3xl border-2 border-surface-border dark:border-gold/40 shadow-3d-card">
+          <div className="lg:col-span-6 flex flex-col">
+            <TiltCard maxTilt={6} className="bg-white dark:bg-navy-dark p-6 sm:p-8 rounded-3xl border-2 border-surface-border dark:border-gold/40 shadow-3d-card flex-1 flex flex-col justify-between">
+              <div>
               
               <div className="flex items-center justify-between border-b border-surface-border dark:border-gold/20 pb-4 mb-5">
                 <div>
@@ -629,14 +630,15 @@ export default function EnquiryAndMapSection({ lang, selectedScheme, onOpenLegal
                 </form>
               )}
 
+              </div>
             </TiltCard>
           </div>
 
           {/* Right: Map (ABOVE) & Branch Info (BELOW) (6 cols) */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-6 lg:space-y-0 h-full">
             
             {/* Embedded Google Map (ABOVE) */}
-            <div className="rounded-3xl border-2 border-surface-border dark:border-gold/40 overflow-hidden shadow-3d-card bg-surface-muted h-[280px] relative">
+            <div className="rounded-3xl border-2 border-surface-border dark:border-gold/40 overflow-hidden shadow-3d-card bg-surface-muted h-[300px] sm:h-[320px] lg:h-[340px] relative shrink-0">
               <iframe
                 title="Siva Kaveri Chits Eluru Branch Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.669866164998!2d81.095!3d16.71!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a361cf!2sEluru%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000"
@@ -650,38 +652,57 @@ export default function EnquiryAndMapSection({ lang, selectedScheme, onOpenLegal
             </div>
 
             {/* Registered Headquarters Info (BELOW THE MAP) */}
-            <TiltCard maxTilt={6} className="p-6 rounded-3xl bg-white dark:bg-navy-dark border border-surface-border dark:border-gold/30 shadow-3d-card space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-surface-subtle dark:bg-navy-deep text-navy dark:text-gold-light flex items-center justify-center shadow-sm border border-surface-border dark:border-gold/30 shrink-0">
-                  <Building className="w-6 h-6 text-navy dark:text-gold-light" />
+            <TiltCard maxTilt={6} className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-navy-dark border-2 border-surface-border dark:border-gold/40 shadow-3d-card flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-surface-subtle dark:bg-navy-deep text-navy dark:text-gold-light flex items-center justify-center shadow-sm border border-surface-border dark:border-gold/30 shrink-0">
+                    <Building className="w-6 h-6 text-navy dark:text-gold-light" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-black text-base sm:text-lg text-navy dark:text-white">
+                      Registered Headquarters (Eluru)
+                    </h3>
+                    <p className="text-xs font-mono text-gold-dark dark:text-gold-light font-bold">
+                      D.No. 28-8-25/1, Narasimharao Pet, Eluru - 534006
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display font-black text-base sm:text-lg text-navy dark:text-white">
-                    Registered Headquarters (Eluru)
-                  </h3>
-                  <p className="text-xs font-mono text-gold-dark dark:text-gold-light font-bold">
-                    D.No. 28-8-25/1, Narasimharao Pet, Eluru - 534006
-                  </p>
+
+                <div className="space-y-3 text-xs sm:text-sm text-charcoal-light dark:text-white/80 pt-4 mt-4 border-t border-surface-border dark:border-gold/15">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-navy dark:text-gold-light shrink-0 mt-0.5" />
+                    <p>{BRAND.address}</p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-navy dark:text-gold-light shrink-0" />
+                    <span>
+                      Call: <a href={`tel:${BRAND.phone}`} className="font-bold text-navy dark:text-gold-light">{BRAND.phoneDisplay}</a> / {BRAND.landline}
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-navy dark:text-gold-light shrink-0 mt-0.5" />
+                    <p>{BRAND.officeHours}</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-2.5 text-xs text-charcoal-light dark:text-white/80 pt-2 border-t border-surface-border dark:border-gold/15">
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-navy dark:text-gold-light shrink-0 mt-0.5" />
-                  <p>{BRAND.address}</p>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-navy dark:text-gold-light shrink-0" />
-                  <span>
-                    Call: <a href={`tel:${BRAND.phone}`} className="font-bold text-navy dark:text-gold-light">{BRAND.phoneDisplay}</a> / {BRAND.landline}
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-navy dark:text-gold-light shrink-0 mt-0.5" />
-                  <p>{BRAND.officeHours}</p>
-                </div>
+              {/* Bottom Quick Directions / Trust Footer */}
+              <div className="pt-3 mt-3 border-t border-surface-border dark:border-gold/15 flex items-center justify-between text-xs font-mono">
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Central Office & Bidding Hall</span>
+                </span>
+                <a
+                  href="https://maps.google.com/?q=Eluru+Andhra+Pradesh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-navy dark:text-gold-light font-bold hover:underline flex items-center gap-1"
+                >
+                  <span>Get Directions</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </TiltCard>
 

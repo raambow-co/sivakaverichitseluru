@@ -194,7 +194,7 @@ function Volumetric3DCoin({
   );
 }
 
-export default function Hero3DGoldCoins() {
+export default function Hero3DGoldCoins({ className = "absolute top-4 sm:top-8 bottom-0 left-0 right-0 overflow-visible pointer-events-none hero-coin-container z-20" }) {
   const containerRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -297,7 +297,7 @@ export default function Hero3DGoldCoins() {
   return (
     <div
       ref={containerRef}
-      className="absolute top-20 sm:top-28 bottom-0 left-0 right-0 overflow-visible pointer-events-none hero-coin-container z-20"
+      className={className}
       aria-hidden="true"
     >
       {coins.map((coin) => (
